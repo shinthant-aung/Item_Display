@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Item Display</title>
+    <script src="item-list.js"></script>
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="main-container">
+      <div>
+        <h2>Item Display</h2>
+      </div>
+      <div>
+        <select name="item-list" id="item-list" class="select" onchange="testChange(event)"></select>
+      </div>
+      <hr/>
+      <div class="prop-row">
+        <span class="prop-name">ID</span>
+        <span id="item-id"></span>
+      </div>
+      
+      <div class="prop-row">
+        <span class="prop-name">Name</span>
+        <span id="item-name"></span>
+      </div>
+      
+
+      <div class="prop-row">
+        <span class="prop-name">Category</span>
+        <span id="item-category"></span>
+      </div>
+      
+
+      <div class="prop-row">
+        <span class="prop-name">Inventory Amt.</span>
+        <span id="item-inventory"></span>
+      </div>
+      
+
+      <div class="prop-row">
+        <span class="prop-name">List price</span>
+        <span id="item-price"></span>
+      </div>
+    </div>
+
+    <script>
+      const id = document.getElementById('item-id');
+      const name = document.getElementById('item-name');
+      const category = document.getElementById('item-category');
+      const inventory = document.getElementById('item-inventory');
+      const price = document.getElementById('item-price');
+
+      let optionHtml = `<option value="none" selected disabled>Select an item...</option>`;
+
+      function testChange(event){
+        console.log(event.target.value)
+        let index = event.target.value -1
+
+        id.innerHTML = items[index].id
+        name.innerHTML = items[index].name
+        category.innerHTML = items[index].category
+        inventory.innerHTML = items[index].inventory
+        price.innerHTML = items[index].price
+      }
+
+      for (let i =0; i < items.length; i++){
+          optionHtml += `<option value="${items[i].id}">${items[i].name}</option>`;
+      }
+      document.getElementById("item-list").innerHTML = optionHtml;
+    </script>
+  </body>
+</html>
